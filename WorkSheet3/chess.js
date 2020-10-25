@@ -46,65 +46,115 @@ class Chess{
 
 var ajedrez=new Chess();
  */
+//Me da pereza borrar esta clase pero no me sirve pa mucho
 class Pieza{
-    constructor(nombre){
+    constructor(nombre,color){
         this.nombre=nombre;
+        this.color=color;
     }
 }
 class Peon extends Pieza{
-    constructor(){
-        super("peon");
+    constructor(color,col, fila){
+        super("peon", color);
+        this.posicion={
+            col:col,
+            fila:fila
+        };
     }
+    mover(){
+
+    }
+    
 };
 
 class Torre extends Pieza{
-    constructor(){
-        super("torre");
+    constructor(color,col, fila){
+        super("torre", color);
+        this.posicion={
+            col:col,
+            fila:fila
+        };
     }
 };
 class Alfil extends Pieza{
-    constructor(){
-        super("alfil");
+    constructor(color,col, fila){
+        super("alfil",color);
+        this.posicion={
+            col:col,
+            fila:fila
+        };
     }
 };
 class Caballo extends Pieza{
-    constructor(){
-        super("caballo");
+    constructor(color, col, fila){
+        super("caballo",color);
+        this.posicion={
+            col:col,
+            fila:fila
+        };
     }
 };
 class Rey extends Pieza{
-    constructor(){
-        super("rey");
+    constructor(color, col, fila){
+        super("rey",color);
+        this.posicion={
+            col:col,
+            fila:fila
+        };
     }
 };
 class Reina extends Pieza{
-    constructor(){
-        super("reina");
+    constructor(color, col, fila){
+        super("reina",color);
+        this.posicion={
+            col:col,
+            fila:fila
+        };
     }
 }
 
 class Player{
-    constructor(nombre){
+    constructor(nombre, color){
         this.nombre=nombre;
+        this.color=color;
         this.piezas=new Array(16);
         this.rellenarPiezas();
-        //Preguntar a Jose  this.piezas.forEach(element, indice =>{if(indice<8) element=new Peon()});
+        //Preguntar a Jose no funciona  this.piezas.forEach(element, indice =>{if(indice<8) element=new Peon()});
     };
     rellenarPiezas(){
-        for(let i=0; i<16;i++){
-            if(i<8)
-                this.piezas[i]=new Peon();
-            if(i==8 || i==15)
-                this.piezas[i]=new Torre();
-            if(i==9 || i==14)
-                this.piezas[i]=new Caballo();
-            if(i==10 || i==13)
-                this.piezas[i]=new Alfil();
-            if(i==11)
-                this.piezas[i]=new Reina();
-            if(i==12)
-                this.piezas[i]=new Rey();
+        if(this.color=="negro"){
+            for(let i=0; i<16;i++){
+                if(i<8)
+                    this.piezas[i]=new Peon(this.color,i,0);
+                if(i==8 || i==15)
+                    this.piezas[i]=new Torre(this.color,i-8,1);
+                if(i==9 || i==14)
+                    this.piezas[i]=new Caballo(this.color,i-8,1);
+                if(i==10 || i==13)
+                    this.piezas[i]=new Alfil(this.color,i-8,1);
+                if(i==11)
+                    this.piezas[i]=new Reina(this.color,i-8,1);
+                if(i==12)
+                    this.piezas[i]=new Rey(this.color,i-8,1);
+            }
+        }
+        else{
+            for(let i=0; i<16;i++){
+                if(i<8)
+                    this.piezas[i]=new Peon(this.color,i,6);
+                if(i==8 || i==15)
+                    this.piezas[i]=new Torre(this.color,i-8,7);
+                if(i==9 || i==14)
+                    this.piezas[i]=new Caballo(this.color,i-8,7);
+                if(i==10 || i==13)
+                    this.piezas[i]=new Alfil(this.color,i-8,7);
+                if(i==11)
+                    this.piezas[i]=new Reina(this.color,i-8,7);
+                if(i==12)
+                    this.piezas[i]=new Rey(this.color,i-8,7);
+            };
+        }
         }
     }
-}
-player=new Player("Jacob");
+p1=new Player("Jacob","blanco");
+p2=new Player("Raquel","negro");
