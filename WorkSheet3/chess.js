@@ -13,7 +13,30 @@ class Peon extends Pieza{
         };
     }
     mover(){
-
+        if(this.color=="blanco")
+            this.posicion.fila--;
+        else
+            this.posicion.fila++;
+    };
+    comerDrcha(){
+        if(this.color=="blanco"){
+            this.posicion.fila--;
+            this.posicion.col--;
+        }
+        else{
+            this.posicion.fila++;
+            this.posicion.col++;
+        }
+    };
+    comerIzq(){
+        if(this.color=="blanco"){
+            this.posicion.fila--;
+            this.posicion.col++;
+        }
+        else{
+            this.posicion.fila++;
+            this.posicion.col--;
+        }
     }
     
 };
@@ -25,6 +48,30 @@ class Torre extends Pieza{
             col:col,
             fila:fila
         };
+    };
+    moverAdelante(n){
+        if(this.color=="blanco")
+            this.posicion.fila-=n;
+        else
+            this.posicion.fila+=n;
+    };
+    moverAtras(n){
+        if(this.color=="blanco")
+            this.posicion.fila+=n;
+        else
+            this.posicion.fila-=n;
+    };
+    moverIzq(n){
+        if(this.color=="blanco")
+            this.posicion.col+=n;
+        else
+            this.posicion.col-=n;
+    };
+    moverDrch(n){
+        if(this.color=="blanco")
+            this.posicion.fila-=n;
+        else
+            this.posicion.fila+=n;
     }
 };
 class Alfil extends Pieza{
@@ -34,7 +81,17 @@ class Alfil extends Pieza{
             col:col,
             fila:fila
         };
-    }
+    };
+    moverAdelanteDrch(n){
+        if(this.color=="blanco"){
+            this.posicion.fila-=n;
+            this.posicion.col-=n;
+        }
+        else{
+            this.posicion.fila+=n;
+            this.posicion.col+=n;
+        }
+    };
 };
 class Caballo extends Pieza{
     constructor(color, col, fila){
