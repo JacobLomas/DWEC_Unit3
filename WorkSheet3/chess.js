@@ -92,6 +92,26 @@ class Alfil extends Pieza{
             this.posicion.col+=n;
         }
     };
+    moverAdelanteIzq(n){
+        if(this.color=="blanco"){
+            this.posicion.fila-=n;
+            this.posicion.col+=n;
+        }
+        else{
+            this.posicion.fila+=n;
+            this.posicion.col-=n;
+        }
+    };
+    moverAtrasDrch(n){
+        if(this.color=="blanco"){
+            this.posicion.fila+=n;
+            this.posicion.col-=n;
+        }
+        else{
+            this.posicion.fila-=n;
+            this.posicion.col+=n;
+        }
+    }
 };
 class Caballo extends Pieza{
     constructor(color, col, fila){
