@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="bookList.js"></script>
+    <title>Document</title>
+</head>
+<body onload="main()">
+    <!-- Esto lo he utilizado para esbozar el diseño, luego genero el html en el main() -->
+    <div style="border: 1px solid black; padding:20px; width:800px; height:800px;">
+        <div style="border: 1px solid black; padding:20px; width:300px;">
+            <label for="titulo">Titulo</label>
+            <input type="text" name="titulo" placeholder="Título" id="titulo"> <br>
+            <label for="genero">Género</label>
+            <input type="text" name="genero" placeholder="Género" id="genero"><br>
+            <label for="autor">Autor</label>
+            <input type="text" name="autor" placeholder="Autor" id="autor"><br>
+            <button id="añadir">Añadir libro</button>
+        </div><br><br>
+        <div id="mostrarTabla" style="border: 1px solid black; padding:20px;">
+            <table style="border: 1px solid black; padding:20px; width:100%;">
+                <tr>
+                    <td>Título</td>
+                    <td>Género</td>
+                    <td>Autor</td>
+                    <td>Leído</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
