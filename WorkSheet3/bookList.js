@@ -47,6 +47,7 @@ class BookList{
         return this.books[indiceCurrent+1];
     };
     finishCurrentBook(){
+        if(this.currentBook!=undefined)
         this.currentBook.setRead();
     }   
 };
@@ -75,4 +76,36 @@ function mostrarTabla(){
     for(libro of lista.books)
         tabla+='<tr><td>'+libro.title+'</td><td>'+libro.genre+'</td><td>'+libro.author+'</td><td>'+libro.read+'</td>'; 
     document.getElementById("mostrarTabla").innerHTML='<button onclick="mostrarTabla()" id="mostrar">Actualizar tabla</button>'+tabla;
+    document.getElementById("principal").innerHTML+='<div id="info" style="border: 1px solid black; padding:20px; position:absolute; left:420px; top:30px"></div>';
+    var info='<label>Ultimo libro leído:'+ultimoLibroMostrar()+'</label>';
+    info+='<br> <label>Siguiente libro para leer: '+siguienteLibroMostrar()+'</label>';
+    info+='<br> <label>Libro que me estoy leyendo: '+actualLibroMostrar()+'</label>';
+    info+='<br> <button onclick="terminarLibro()">Terminar libro actual</button>';
+    document.getElementById("info").innerHTML=info;
 };
+function ultimoLibroMostrar(){
+    let libro=lista.lastBookRead;
+    if(libro==undefined)
+        return " No se ha leido ninguno aún";
+    else
+        return libro.title;
+};
+function siguienteLibroMostrar(){
+    let libro=lista.nextBookToRead;
+    if(libro==undefined)
+        return " No hay más libros";
+    else
+        return libro.title;
+};
+function actualLibroMostrar(){
+    let libro=lista.currentBook;
+    if(libro==undefined)
+        return " No se está leyendo ningun libro";
+    else
+        return libro.title;
+};
+
+function terminarLibro(){
+    lista.finishCurrentBook();
+    mostrarTabla();
+}
