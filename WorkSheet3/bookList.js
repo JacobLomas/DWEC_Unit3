@@ -1,56 +1,5 @@
-class Book{
-    title;
-    genre;
-    author;
-    read;
-    readDate;
-    constructor(title, genre, author){
-        this.title=title;
-        this.genre=genre;
-        this.author=author;
-        this.read=false;
-        this.readDate=null;
-    };
-    setRead(){
-        this.read=true;
-        this.readDate=new Date();
-    }
-};
-
-class BookList{
-    books;
-    constructor(){
-        this.books=[];
-    };
-    add(book){
-        this.books.push(book);
-    };
-
-    get readBooks(){
-        let cont=0;
-        for(let libro of this.books)
-            if(libro.read)
-                cont++;
-        return cont;
-    }
-    get notReadBooks(){
-        return this.books.length-this.readBooks;
-    };
-    get currentBook(){
-        return this.books.find(libro =>{return !libro.read;})
-    };
-    get lastBookRead(){
-        let indiceCurrent=this.books.findIndex(libro =>{return !libro.read;});
-        return this.books[indiceCurrent-1];    };
-    get nextBookToRead(){
-        let indiceCurrent=this.books.findIndex(libro =>{return !libro.read;});
-        return this.books[indiceCurrent+1];
-    };
-    finishCurrentBook(){
-        if(this.currentBook!=undefined)
-        this.currentBook.setRead();
-    }   
-};
+import {Book, BookList} from "./clasesbk.js";
+window.onload=main;
 var lista=new BookList();
 function main(){    
     //Añadimos las etiquetas para la caja de añadir libro
@@ -73,10 +22,10 @@ function main(){
 };
 function anadirLibro(){
     };
-function mostrarTabla(){
+window.mostrarTabla =function(){
     var tabla='<br><br><table style="border: 1px solid black; padding:20px; width:100%;">';
     tabla+='<tr> <td>Título</td> <td>Género</td> <td>Autor</td>  <td>Leído</td> </tr>';    
-    for(libro of lista.books)
+    for(let libro of lista.books)
         tabla+='<tr><td>'+libro.title+'</td><td>'+libro.genre+'</td><td>'+libro.author+'</td><td>'+libro.read+'</td>'; 
     document.getElementById("mostrarTabla").innerHTML='<button onclick="mostrarTabla()" id="mostrar">Actualizar tabla</button>'+tabla;
     
@@ -108,7 +57,7 @@ function actualLibroMostrar(){
         return libro.title;
 };
 
-function terminarLibro(){
+window.terminarLibro=function (){
     lista.finishCurrentBook();
     mostrarTabla();
 }
